@@ -1,6 +1,5 @@
 from xml.dom.minidom import parse, getDOMImplementation
 #import gettext
-#_ = gettext.Catalog("PLiSetup",'').gettext
 
 from os import system,path,listdir
 

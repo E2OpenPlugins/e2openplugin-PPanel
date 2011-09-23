@@ -106,7 +106,7 @@
 
            <execute name="Download latest menu"
                     condition="[ ! -f /var/etc/ppanelautodownload ]"
-                    target="ppanelupdate.sh http://pli.dreamvcr.com/emerald/xml/dm7000/software.tar.gz /; rm -f /tmp/ppanelrefresh"
+                    target="ppanelupdate.sh http://somewhere/software.tar.gz /; rm -f /tmp/ppanelrefresh"
                     confirmation="Are you sure to download the latest menu?"
                     quit="restart"/>
       -->
@@ -159,9 +159,6 @@
       <media name="Play an internet radio stream"
              target="http://64.236.34.196:80/stream/1065" stream="true"
              helptext="Plays http://64.236.34.196:80/stream/1065"/>
-      <media name="Show PLi news"
-             target="http://pli.dreamvcr.com/garnet/xml/all/pli_news.txt"
-             helptext="Show PLi news from internet"/>
 
       <!-- Some more examples for <media>
 
@@ -190,26 +187,6 @@
                confirmation = "true"
                helptext="Executes ls /tmp and some more"/>
 
-      <!-- Use <tarball> to download and install a tarball.
-           Also supports ipkg packages
-           THIS IS FOR PLI INTERNAL USE ONLY
-           Parameters:
-           name           : name in the screen, compulsory
-           url            : download URL, compulsory
-           version        : package version, optional
-           action         : install action, optional, default is "upgrade"
-           packageType    : one of "var" (default), "hdd" or "set", optional
-           package        : short name of the package as shown in the uninstaller, optional
-           Optional are   : confirmation, runBefore, runAfter, runBeforeOut, runAfterOut, condition, helptext, quit
-
-           Note: If url is a directory in the filesystem, "manual install" will be opened.
-      -->
-      <!-- This example is commented
-           <tarball name="Download and install something"
-                    url="http://somewhere/something.tar.gz"
-                    confirmation="true"/>
-      -->
-
       <!-- Use <comment> to just display a line of text in the menu
            Parameters:
            name : name in the screen, compulsory
@@ -228,16 +205,6 @@
       -->
       <plugins name="My installed plugins"
                helptext="Show my installed plugins"/>
-
-      <!-- Use <plugin> to call one specific plugin
-           Parameters:
-           name         : name in the screen, compulsory
-           target       : plugin configuration file, compulsory
-           Optional are : confirmation, runBefore, runAfter, runBeforeOut, runAfterOut, condition, helptext, quit
-      <plugin name="PLi setup tool"
-              target="setup.cfg"
-              helptext="Open the PLi setup tool"/>
-      -->
 
       <!-- Use <menu> to open a Dreambox menu
            Parameters:
@@ -268,17 +235,6 @@
       <ppanel name="Show Software management"
               target="/var/etc/software.xml"
               helptext="Show Software management"/>
-
-      <!-- Use <remove> to open the "Remove software" screen
-           THIS IS FOR PLI INTERNAL USE ONLY
-           Parameters:
-           name         : name in the screen, compulsory
-           Optional are : confirmation, runBefore, runAfter, runBeforeOut, runAfterOut, condition, helptext, quit
-      -->
-      <!-- This example is commented
-           <remove name="Remove Software..."
-                   confirmation="true"/>
-      -->
 
 		<!-- Use <configwrite> to write a value to the Enigma config
 		     Parameters:
