@@ -398,16 +398,19 @@ class ToplevelPPanel(PPanel):
 		attr = newdoc.createAttribute("name")
 		attr.nodeValue = "Installed PPanels"
 		newdoc.documentElement.setAttributeNode(attr)
-		self.load("/etc/ppanels/", newdoc)
+		try:
+			self.load("/etc/ppanels/", newdoc)
+		except Exception, ex:
+			print "Cannot load /etc/ppanels/", ex
 		if path.isdir("/etc/enigma2/ppanels"):
 			self.load("/etc/enigma2/ppanels/", newdoc)
 		PPanel.__init__(self, session = session, node = newdoc.documentElement, deletenode = newdoc)
 
 	def load(self, ppaneldir, newdoc):
 		for ppanelfile in listdir(ppaneldir):
-			fullname = path.join(ppaneldir, ppanelfile)
-			if path.isfile(fullname):
-				if ppanelfile.endswith(".xml"):
+			if ppanelfile.endswith(".xml"):
+				fullname = path.join(ppaneldir, ppanelfile)
+				if path.isfile(fullname):
 					try:
 						node = parse(fullname)
 						if node.documentElement:
