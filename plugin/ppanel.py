@@ -310,8 +310,8 @@ class Execute(PPanelEntry):
 	skin = """
 	<screen position="c-250,c-200" size="500,400">
 		<widget name="linelist" font="Fixed;16" position="5,5" size="e-10,e-55" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="5,e-45" zPosition="1" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="e-145,e-45" zPosition="1" size="140,40" alphatest="on" />
+		<ePixmap pixmap="buttons/yellow.png" position="5,e-45" zPosition="1" size="140,40" alphatest="on" />
+		<ePixmap pixmap="buttons/blue.png" position="e-145,e-45" zPosition="1" size="140,40" alphatest="on" />
 		<widget name="key_yellow" position="5,e-45" size="140,40" zPosition="2" valign="center" halign="center" font="Regular;20" transparent="1" backgroundColor="yellow" />
 		<widget name="key_blue" position="e-145,e-45" size="140,40" zPosition="2" valign="center" halign="center" font="Regular;20" transparent="1" backgroundColor="blue" />
 	</screen>"""
