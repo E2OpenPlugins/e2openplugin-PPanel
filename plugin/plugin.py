@@ -1,7 +1,8 @@
+from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
 
 def main(session, **kwargs):
-	from ppanel import ToplevelPPanel
+	from .ppanel import ToplevelPPanel
 	session.open(ToplevelPPanel)
 
 def Plugins(**kwargs):

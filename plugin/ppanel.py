@@ -1,7 +1,9 @@
+from __future__ import absolute_import
+from __future__ import print_function
 from xml.dom.minidom import parse, getDOMImplementation
 #import gettext
 
-from os import system,path,listdir
+from os import system, path, listdir
 
 from Components.GUIComponent import *
 from Components.HTMLComponent import *
@@ -12,7 +14,7 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap
 from Components.ProgressBar import ProgressBar
-from url import *
+from .url import *
 
 from socket import gethostbyname
 
@@ -157,8 +159,8 @@ class PPanel(PPanelEntry):
 			try:
 				node = parse(self.filename)
 			except:
-				print "Illegal xml file"
-				print self.filename
+				print("Illegal xml file")
+				print(self.filename)
 				return
 			#we created our own node, we have to remember and delete it when we're closed
 			self.deletenode = node
@@ -232,7 +234,7 @@ class File(PPanelEntry):
 
 	def startDownload(self):
 		from Tools.Downloader import downloadWithProgress
-		print "[PPanel File] Downloading %s to %s" % (self.url, self.target)
+		print("[PPanel File] Downloading %s to %s" % (self.url, self.target))
 		self.downloader = downloadWithProgress(self.url, self.target)
 		self.downloader.addProgress(self.progress)
 		self.downloader.start().addCallback(self.responseCompleted).addErrback(self.responseFailed)
@@ -242,11 +244,11 @@ class File(PPanelEntry):
 		self["progress"].setValue(p)
 
 	def responseCompleted(self, string=""):
-		print "[PPanel File] Download succeeded. "+string
+		print("[PPanel File] Download succeeded. "+string)
 		self.close()
 
 	def responseFailed(self, string=""):
-		print "[PPanel File] Download failed. "+string
+		print("[PPanel File] Download failed. "+string)
 		self.close()
 
 	def abort(self):
@@ -282,7 +284,7 @@ class Tarball(PPanelEntry):
 
 	def startDownload(self):
 		from Tools.Downloader import downloadWithProgress
-		print "[PPanel File] Downloading %s to %s" % (self.url, self.target)
+		print("[PPanel File] Downloading %s to %s" % (self.url, self.target))
 		self.downloader = downloadWithProgress(str(self.url), "/tmp/tarball.tar.gz")
 		self.downloader.addProgress(self.progress)
 		self.downloader.start().addCallback(self.responseCompleted).addErrback(self.responseFailed)
@@ -292,13 +294,13 @@ class Tarball(PPanelEntry):
 		self["progress"].setValue(p)
 
 	def responseCompleted(self, string=""):
-		print "[PPanel File] Download succeeded. "+string
+		print("[PPanel File] Download succeeded. "+string)
 		system("tar -zxvf /tmp/tarball.tar.gz -C " + self.target)
 		system("rm /tmp/tarball.tar.gz")
 		self.close()
 
 	def responseFailed(self, string=""):
-		print "[PPanel File] Download failed. "+string
+		print("[PPanel File] Download failed. "+string)
 		self.close()
 
 	def abort(self):
@@ -345,13 +347,13 @@ class Execute(PPanelEntry):
 			self.appClosed(-1)
 
 	def appClosed(self, retval):
-		print "appClosed"
+		print("appClosed")
 		if retval:
 			self.data += '\nexecute error %d' % retval
 		self.setList()
 
 	def dataAvail(self, str):
-		print "dataAvail: " + str
+		print("dataAvail: " + str)
 		self.data += str
 
 	def setList(self):
@@ -400,8 +402,8 @@ class ToplevelPPanel(PPanel):
 		newdoc.documentElement.setAttributeNode(attr)
 		try:
 			self.load("/etc/ppanels/", newdoc)
-		except Exception, ex:
-			print "Cannot load /etc/ppanels/", ex
+		except Exception as ex:
+			print("Cannot load /etc/ppanels/", ex)
 		if path.isdir("/etc/enigma2/ppanels"):
 			self.load("/etc/enigma2/ppanels/", newdoc)
 		PPanel.__init__(self, session = session, node = newdoc.documentElement, deletenode = newdoc)
@@ -426,7 +428,7 @@ class ToplevelPPanel(PPanel):
 								newdoc.documentElement.appendChild(ppanel)
 						del node
 					except:
-						print "Illegal xml file", fullname
+						print("Illegal xml file", fullname)
 
 class PLiPPanel:
 	def __init__(self):
@@ -436,5 +438,5 @@ class PLiPPanel:
 		return _("Show PPanels")
 
 	def openPPanels(self):
-		print "open ppanels..."
+		print("open ppanels...")
 		self.session.open(ToplevelPPanel)
