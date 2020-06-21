@@ -1,4 +1,5 @@
-from urlparse import urlparse
+from six.moves.urllib.parse import urlparse
+
 
 def descramble(text):
 	mask = [ 89, 52, 178, 9, 56, 86, 114, 5, 29, 98, 156, 209, 243, 73, 198, 101 ]
