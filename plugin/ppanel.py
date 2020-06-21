@@ -35,10 +35,10 @@ class PPanelEntry(Screen):
 			self.runAfterOut = node.getAttribute("runAfterOut")
 
 		self.onShown.append(self.setWindowTitle)
-		if self.runAfter is not '' or self.runAfterOut is not '':
+		if self.runAfter != '' or self.runAfterOut != '':
 			self.onHide.append(self.runAfterCommands)
 
-		if self.runBefore is not '':
+		if self.runBefore != '':
 			system(self.runBefore)
 
 	def setWindowTitle(self):
@@ -48,9 +48,9 @@ class PPanelEntry(Screen):
 		return self.name
 
 	def runAfterCommands(self):
-		if self.runAfter is not '':
+		if self.runAfter != '':
 			system(self.runAfter)
-		if self.runAfterOut is not '':
+		if self.runAfterOut != '':
 			self.session.open(Execute, self.name, None, self.runAfterOut)
 
 class PPanel(PPanelEntry):
@@ -102,7 +102,7 @@ class PPanel(PPanelEntry):
 		self.runBeforeOut = e.getAttribute("runBeforeOut")
 
 		confirmation = e.getAttribute("confirmation").encode('utf-8')
-		if confirmation is not '':
+		if confirmation != '':
 			if confirmation == "true":
 				self.session.openWithCallback(self.confirmationResult, MessageBox, _("Are you sure?"))
 			else:
@@ -119,7 +119,7 @@ class PPanel(PPanelEntry):
 			return
 		name = selection[0]
 
-		if self.runBeforeOut is not '':
+		if self.runBeforeOut != '':
 			self.session.openWithCallback(self.runBeforeFinished, Execute, name, None, self.runBeforeOut)
 			#ensure we won't run the command again, after output is closed
 			self.runBeforeOut = ''
@@ -154,7 +154,7 @@ class PPanel(PPanelEntry):
 	def createPPanel(self):
 		self.nodelist = []
 		node = self.node
-		if self.filename is not '':
+		if self.filename != '':
 			#instead of the node that we got in our constructor, we need to parse a new node from a file
 			try:
 				node = parse(self.filename)
