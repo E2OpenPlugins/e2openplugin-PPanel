@@ -58,7 +58,7 @@ class PPanel(PPanelEntry):
 		<widget name="helptext" position="5,e-35" size="e-10,30" valign="center" halign="left" font="Regular;20" />
 	</screen>"""
 
-	def __init__(self, session, name = 'PPanel', node = None, filename = '', deletenode = None):
+	def __init__(self, session, name='PPanel', node=None, filename='', deletenode=None):
 		self.skin = PPanel.skin
 		PPanelEntry.__init__(self, session, name, node)
 		self.nodelist = []
@@ -404,7 +404,7 @@ class ToplevelPPanel(PPanel):
 			print "Cannot load /etc/ppanels/", ex
 		if path.isdir("/etc/enigma2/ppanels"):
 			self.load("/etc/enigma2/ppanels/", newdoc)
-		PPanel.__init__(self, session = session, node = newdoc.documentElement, deletenode = newdoc)
+		PPanel.__init__(self, session=session, node=newdoc.documentElement, deletenode=newdoc)
 
 	def load(self, ppaneldir, newdoc):
 		for ppanelfile in listdir(ppaneldir):
