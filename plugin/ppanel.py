@@ -171,13 +171,13 @@ class PPanel(PPanelEntry):
 				#only ELEMENT_NODE has attributes
 				if e.hasAttribute("condition"):
 					condition = e.getAttribute("condition")
-					result = system(condition)>>8
+					result = system(condition) >> 8
 					if result:
 						continue
 
 				if e.localName == "separator":
 					#note the trailing comma, we create a one element tuple here (so the listbox considers this a nonselectable entry)
-					self.nodelist.append((str(("-"*40)),))
+					self.nodelist.append((str(("-" * 40)),))
 					continue
 				elif e.localName == "update":
 					#TODO
@@ -238,15 +238,15 @@ class File(PPanelEntry):
 		self.downloader.start().addCallback(self.responseCompleted).addErrback(self.responseFailed)
 
 	def progress(self, current, total):
-		p = int(100*current/float(total))
+		p = int(100 * current / float(total))
 		self["progress"].setValue(p)
 
 	def responseCompleted(self, string=""):
-		print "[PPanel File] Download succeeded. "+string
+		print "[PPanel File] Download succeeded. " + string
 		self.close()
 
 	def responseFailed(self, string=""):
-		print "[PPanel File] Download failed. "+string
+		print "[PPanel File] Download failed. " + string
 		self.close()
 
 	def abort(self):
@@ -288,17 +288,17 @@ class Tarball(PPanelEntry):
 		self.downloader.start().addCallback(self.responseCompleted).addErrback(self.responseFailed)
 
 	def progress(self, current, total):
-		p = int(100*current/float(total))
+		p = int(100 * current / float(total))
 		self["progress"].setValue(p)
 
 	def responseCompleted(self, string=""):
-		print "[PPanel File] Download succeeded. "+string
+		print "[PPanel File] Download succeeded. " + string
 		system("tar -zxvf /tmp/tarball.tar.gz -C " + self.target)
 		system("rm /tmp/tarball.tar.gz")
 		self.close()
 
 	def responseFailed(self, string=""):
-		print "[PPanel File] Download failed. "+string
+		print "[PPanel File] Download failed. " + string
 		self.close()
 
 	def abort(self):
