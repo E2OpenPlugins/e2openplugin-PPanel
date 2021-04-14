@@ -1,7 +1,7 @@
 from xml.dom.minidom import parse, getDOMImplementation
 #import gettext
 
-from os import system,path,listdir
+from os import system, path, listdir
 
 from Components.GUIComponent import *
 from Components.HTMLComponent import *
