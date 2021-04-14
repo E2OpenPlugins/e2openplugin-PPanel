@@ -18,6 +18,7 @@ from socket import gethostbyname
 
 from enigma import eConsoleAppContainer
 
+
 class PPanelEntry(Screen):
 	def __init__(self, session, name, node):
 		Screen.__init__(self, session)
@@ -50,6 +51,7 @@ class PPanelEntry(Screen):
 			system(self.runAfter)
 		if self.runAfterOut is not '':
 			self.session.open(Execute, self.name, None, self.runAfterOut)
+
 
 class PPanel(PPanelEntry):
 	skin = """
@@ -204,6 +206,7 @@ class PPanel(PPanelEntry):
 			del self.deletenode
 			self.deletenode = None
 
+
 class File(PPanelEntry):
 	skin = """
 	<screen position="c-250,c-50" size="500,100">
@@ -253,6 +256,7 @@ class File(PPanelEntry):
 		if self.downloader is not None:
 			self.downloader.stop
 		self.close()
+
 
 class Tarball(PPanelEntry):
 	skin = """
@@ -305,6 +309,7 @@ class Tarball(PPanelEntry):
 		if self.downloader is not None:
 			self.downloader.stop()
 		self.close()
+
 
 class Execute(PPanelEntry):
 	skin = """
@@ -377,13 +382,16 @@ class Execute(PPanelEntry):
 			self.offset = self.offset + 20
 			self.setList()
 
+
 class Picture(PPanelEntry):
 	def __init__(self, session, name, node):
 		PPanelEntry.__init__(self, session, name, node)
 
+
 class Remove(PPanelEntry):
 	def __init__(self, session, name, node):
 		PPanelEntry.__init__(self, session, name, node)
+
 
 class Media(PPanelEntry):
 	def __init__(self, name, node):
@@ -427,6 +435,7 @@ class ToplevelPPanel(PPanel):
 						del node
 					except:
 						print "Illegal xml file", fullname
+
 
 class PLiPPanel:
 	def __init__(self):
