@@ -15,6 +15,7 @@ from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap
 from Components.ProgressBar import ProgressBar
 from .url import *
+import six
 
 from socket import gethostbyname
 
@@ -101,7 +102,7 @@ class PPanel(PPanelEntry):
 
 		self.runBeforeOut = e.getAttribute("runBeforeOut")
 
-		confirmation = e.getAttribute("confirmation").encode('utf-8')
+		confirmation = six.ensure_str(e.getAttribute("confirmation"))
 		if confirmation != '':
 			if confirmation == "true":
 				self.session.openWithCallback(self.confirmationResult, MessageBox, _("Are you sure?"))
@@ -126,7 +127,7 @@ class PPanel(PPanelEntry):
 			return
 
 		if e.localName == "ppanel":
-			target = e.getAttribute("target").encode('utf-8')
+			target = six.ensure_str(e.getAttribute("target"))
 			self.session.open(PPanel, name, e, target)
 		elif e.localName == "category":
 			self.session.open(PPanel, name, e)
@@ -135,7 +136,7 @@ class PPanel(PPanelEntry):
 		elif e.localName == "tarball":
 			self.session.open(Tarball, name, e)
 		elif e.localName == "execute":
-			target = e.getAttribute("target").encode('utf-8')
+			target = six.ensure_str(e.getAttribute("target"))
 			self.session.open(Execute, name, e, target)
 		#elif e.localName == "picture":
 		#	self.session.open(Picture, name, e)
@@ -185,7 +186,7 @@ class PPanel(PPanelEntry):
 					#TODO
 					continue
 
-				name = e.getAttribute("name").encode('utf-8')
+				name = six.ensure_str(e.getAttribute("name"))
 				if name == '':
 					continue
 
@@ -194,7 +195,7 @@ class PPanel(PPanelEntry):
 					self.nodelist.append((str(name),))
 					continue
 
-				helptext = e.getAttribute("helptext").encode('utf-8')
+				helptext = six.ensure_str(e.getAttribute("helptext"))
 
 				self.nodelist.append((str(name), e, str(helptext)))
 
