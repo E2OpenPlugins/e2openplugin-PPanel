@@ -245,10 +245,12 @@ class File(PPanelEntry):
 		self["progress"].setValue(p)
 
 	def responseCompleted(self, string=""):
+		string = six.ensure_str(string)
 		print("[PPanel File] Download succeeded. "+string)
 		self.close()
 
 	def responseFailed(self, string=""):
+		string = six.ensure_str(string)
 		print("[PPanel File] Download failed. "+string)
 		self.close()
 
@@ -295,12 +297,14 @@ class Tarball(PPanelEntry):
 		self["progress"].setValue(p)
 
 	def responseCompleted(self, string=""):
+		string = six.ensure_str(string)
 		print("[PPanel File] Download succeeded. "+string)
 		system("tar -zxvf /tmp/tarball.tar.gz -C " + self.target)
 		system("rm /tmp/tarball.tar.gz")
 		self.close()
 
 	def responseFailed(self, string=""):
+		string = six.ensure_str(string)
 		print("[PPanel File] Download failed. "+string)
 		self.close()
 
@@ -353,9 +357,10 @@ class Execute(PPanelEntry):
 			self.data += '\nexecute error %d' % retval
 		self.setList()
 
-	def dataAvail(self, str):
-		print("dataAvail: " + str)
-		self.data += str
+	def dataAvail(self, string):
+		string = six.ensure_str(string)
+		print("dataAvail: " + string)
+		self.data += string
 
 	def setList(self):
 		if self["linelist"] is not None:
