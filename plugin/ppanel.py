@@ -6,7 +6,7 @@ from xml.dom.minidom import parse, getDOMImplementation
 from os import system, path, listdir
 
 from Components.GUIComponent import *
-from Components.HTMLComponent import *
+#from Components.HTMLComponent import *
 from Components.Button import Button
 from Components.MenuList import MenuList
 from Components.Label import Label
