@@ -346,7 +346,7 @@ class Execute(PPanelEntry):
 		self.offset = 0
 		self.maxoffset = 0
 
-		self["linelist"] = MenuList(list=[], enableWrapAround=True)
+		self["linelist"] = MenuList([], enableWrapAround=True)
 
 		if self.container.execute(str(command)):
 			self.appClosed(-1)
